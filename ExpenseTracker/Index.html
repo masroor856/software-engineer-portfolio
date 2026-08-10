@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="A responsive expense tracker built with HTML, CSS and JavaScript."
+    >
+
+    <title>Expense Tracker | Software Engineering Project</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- ================================
+             SIDEBAR
+        ================================= -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    ET
+                </div>
+
+                <div>
+                    <h2>Expense Tracker</h2>
+                    <span>Personal Finance</span>
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <a
+                    href="#dashboard"
+                    class="nav-link active"
+                >
+                    <span>⌂</span>
+                    Dashboard
+                </a>
+
+                <a
+                    href="#transactions"
+                    class="nav-link"
+                >
+                    <span>↕</span>
+                    Transactions
+                </a>
+
+                <a
+                    href="#add-transaction"
+                    class="nav-link"
+                >
+                    <span>＋</span>
+                    Add Transaction
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-footer">
+
+                <p>Built with</p>
+
+                <span>HTML • CSS • JavaScript</span>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================================
+             MAIN CONTENT
+        ================================= -->
+
+        <main class="main-content">
+
+
+            <!-- Header -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <p class="eyebrow">
+                        PERSONAL FINANCE
+                    </p>
+
+                    <h1>
+                        Financial Dashboard
+                    </h1>
+
+                    <p class="subtitle">
+                        Track your income, expenses and spending habits.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    id="topAddButton"
+                    type="button"
+                >
+                    + Add Transaction
+                </button>
+
+            </header>
+
+
+            <!-- ================================
+                 DASHBOARD
+            ================================= -->
+
+            <section
+                id="dashboard"
+                class="dashboard-section"
+            >
+
+
+                <!-- Summary Cards -->
+
+                <div class="summary-grid">
+
+
+                    <article class="summary-card balance-card">
+
+                        <div class="card-top">
+
+                            <span class="card-label">
+                                Total Balance
+                            </span>
+
+                            <span class="card-icon">
+                                ₦
+                            </span>
+
+                        </div>
+
+                        <h2 id="balance">
+                            ₦0.00
+                        </h2>
+
+                        <p class="card-description">
+                            Your current available balance
+                        </p>
+
+                    </article>
+
+
+                    <article class="summary-card income-card">
+
+                        <div class="card-top">
+
+                            <span class="card-label">
+                                Total Income
+                            </span>
+
+                            <span class="card-icon">
+                                ↑
+                            </span>
+
+                        </div>
+
+                        <h2 id="income">
+                            ₦0.00
+                        </h2>
+
+                        <p class="card-description">
+                            Money coming in
+                        </p>
+
+                    </article>
+
+
+                    <article class="summary-card expense-card">
+
+                        <div class="card-top">
+
+                            <span class="card-label">
+                                Total Expenses
+                            </span>
+
+                            <span class="card-icon">
+                                ↓
+                            </span>
+
+                        </div>
+
+                        <h2 id="expenses">
+                            ₦0.00
+                        </h2>
+
+                        <p class="card-description">
+                            Money going out
+                        </p>
+
+                    </article>
+
+
+                    <article class="summary-card count-card">
+
+                        <div class="card-top">
+
+                            <span class="card-label">
+                                Transactions
+                            </span>
+
+                            <span class="card-icon">
+                                #
+                            </span>
+
+                        </div>
+
+                        <h2 id="transactionCount">
+                            0
+                        </h2>
+
+                        <p class="card-description">
+                            Total recorded transactions
+                        </p>
+
+                    </article>
+
+                </div>
+
+
+                <!-- Quick Statistics -->
+
+                <div class="statistics-panel">
+
+                    <div>
+
+                        <span>
+                            Financial Overview
+                        </span>
+
+                        <h3 id="overviewMessage">
+                            Start by adding your first transaction.
+                        </h3>
+
+                    </div>
+
+                    <div class="progress-wrapper">
+
+                        <div class="progress-label">
+
+                            <span>
+                                Income usage
+                            </span>
+
+                            <span id="expensePercentage">
+                                0%
+                            </span>
+
+                        </div>
+
+                        <div class="progress-bar">
+
+                            <div
+                                id="progressBar"
+                                class="progress-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================================
+                 ADD TRANSACTION
+            ================================= -->
+
+            <section
+                id="add-transaction"
+                class="content-panel"
+            >
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            TRANSACTION
+                        </p>
+
+                        <h2 id="formTitle">
+                            Add Transaction
+                        </h2>
+
+                    </div>
+
+                    <button
+                        id="cancelEdit"
+                        class="text-btn hidden"
+                        type="button"
+                    >
+                        Cancel Edit
+                    </button>
+
+                </div>
+
+
+                <form id="transactionForm">
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="description">
+                                Description
+                            </label>
+
+                            <input
+                                type="text"
+                                id="description"
+                                placeholder="e.g. Monthly salary"
+                                maxlength="60"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="amount">
+                                Amount (₦)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="amount"
+                                placeholder="0.00"
+                                min="0.01"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="type">
+                                Transaction Type
+                            </label>
+
+                            <select id="type">
+
+                                <option value="income">
+                                    Income
+                                </option>
+
+                                <option value="expense">
+                                    Expense
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="category">
+                                Category
+                            </label>
+
+                            <select id="category">
+
+                                <option value="Salary">
+                                    Salary
+                                </option>
+
+                                <option value="Business">
+                                    Business
+                                </option>
+
+                                <option value="Food">
+                                    Food
+                                </option>
+
+                                <option value="Transport">
+                                    Transport
+                                </option>
+
+                                <option value="Shopping">
+                                    Shopping
+                                </option>
+
+                                <option value="Bills">
+                                    Bills
+                                </option>
+
+                                <option value="Education">
+                                    Education
+                                </option>
+
+                                <option value="Health">
+                                    Health
+                                </option>
+
+                                <option value="Entertainment">
+                                    Entertainment
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="date">
+                                Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="date"
+                                required
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="primary-btn"
+                            id="submitButton"
+                        >
+                            Add Transaction
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- ================================
+                 TRANSACTIONS
+            ================================= -->
+
+            <section
+                id="transactions"
+                class="content-panel"
+            >
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            ACTIVITY
+                        </p>
+
+                        <h2>
+                            Transactions
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        id="clearAll"
+                        class="danger-btn"
+                        type="button"
+                    >
+                        Clear All
+                    </button>
+
+                </div>
+
+
+                <!-- Filters -->
+
+                <div class="transaction-controls">
+
+                    <div class="search-box">
+
+                        <span>
+                            ⌕
+                        </span>
+
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Search transactions..."
+                        >
+
+                    </div>
+
+
+                    <select id="filterType">
+
+                        <option value="all">
+                            All Transactions
+                        </option>
+
+                        <option value="income">
+                            Income
+                        </option>
+
+                        <option value="expense">
+                            Expenses
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Transaction list -->
+
+                <div
+                    id="transactionList"
+                    class="transaction-list"
+                >
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            ₦
+                        </div>
+
+                        <h3>
+                            No transactions yet
+                        </h3>
+
+                        <p>
+                            Add your first income or expense
+                            to start tracking your finances.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Footer -->
+
+            <footer class="app-footer">
+
+                <p>
+                    Expense Tracker
+                </p>
+
+                <span>
+                    Built with HTML, CSS & JavaScript
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
